@@ -1,24 +1,17 @@
 import React from "react";
 import "./App.css";
 
+import ItemList from "./components/ItemList";
+
+const initialItems = [
+  { id: 1, weight: 1 },
+  { id: 2, weight: 2 },
+  { id: 3, weight: 4 },
+  { id: 4, weight: 8 },
+];
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <ItemList items={initialItems} />;
 }
 
 export default App;
