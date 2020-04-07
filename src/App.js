@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import { DragDropContext } from "react-beautiful-dnd";
 
 import ItemList from "./components/ItemList";
 
@@ -11,7 +12,14 @@ const initialItems = [
 ];
 
 function App() {
-  return <ItemList items={initialItems} />;
+  const onDragEnd = React.useCallback(() => {
+    console.log("drag end");
+  }, []);
+  return (
+    <DragDropContext onDragEnd={onDragEnd}>
+      <ItemList items={initialItems} />
+    </DragDropContext>
+  );
 }
 
 export default App;
