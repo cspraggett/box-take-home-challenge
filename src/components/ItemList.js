@@ -24,6 +24,7 @@ export default function ItemList({ items }) {
       {(provided, snapshot) => (
         <Container ref={provided.innerRef}>
           <ul>{itemList}</ul>
+          {provided.placeholder}
         </Container>
       )}
     </Droppable>

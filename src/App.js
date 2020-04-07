@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
@@ -22,8 +22,18 @@ const initialItems = [
 const initialBox = [{ name: "box1", maxWeight: 10 }];
 
 function App() {
-  const onDragEnd = React.useCallback(() => {
-    console.log("drag end");
+  const [box, setBox] = useState(initialBox);
+  const onDragEnd = React.useCallback((result) => {
+    console.log("drag end", result);
+    if (!result.destination) {
+      return;
+    }
+
+    if (result.destination.droppableId !== "box") {
+      return;
+    }
+
+    console.log("it's good");
   }, []);
   return (
     <DragDropContext onDragEnd={onDragEnd}>
