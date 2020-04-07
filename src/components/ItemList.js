@@ -10,6 +10,7 @@ const Container = styled.div`
   padding: 8px;
   margin-bottom: 8px;
   display: flex;
+  flex-grow: 1;
 `;
 
 export default function ItemList({ items }) {
