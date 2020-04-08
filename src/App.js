@@ -19,11 +19,12 @@ const initialItems = [
   { id: 4, weight: 8 },
 ];
 
-const initialBox = [{ name: "box1", maxWeight: 10 }];
+const initialBox = [{ name: "box1", maxWeight: 10, currentWeight: 0 }];
 
 function App() {
   const [box, setBox] = useState(initialBox);
-  const onDragEnd = React.useCallback((result) => {
+  const [items, setItems] = useState(initialItems);
+  const onDragEnd = (result) => {
     console.log("drag end", result);
     if (!result.destination) {
       return;
@@ -33,8 +34,20 @@ function App() {
       return;
     }
 
-    console.log("it's good");
-  }, []);
+    console.log("it's good", box[0].currentWeight);
+    console.log(
+      "the weigth",
+      box[0].currentWeight + items[result.source.index - 1].weight
+    );
+    if (
+      box[0].currentWeight + items[result.source.index - 1].weight <=
+      box[0].maxWeight
+    ) {
+      console.log("it fits!");
+    } else {
+      console.log("too heavy");
+    }
+  };
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Container>

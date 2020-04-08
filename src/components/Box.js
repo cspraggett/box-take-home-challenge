@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 
 export default function Box(props) {
-  console.log(props);
+  console.log("box props", props);
   return (
     <Droppable droppableId={"box"}>
       {(provided, snapshot) => (
