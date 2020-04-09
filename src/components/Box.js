@@ -8,16 +8,21 @@ const Container = styled.div`
   padding: 8px;
   margin-bottom: 8px;
   display: flex;
-  flex-grow: 1;
+  flex-grow: 2;
 `;
 
 export default function Box(props) {
   console.log("box props", props);
   return (
-    <Droppable droppableId={"box"}>
+    <Droppable droppableId={`box ${props.index}`} type="box">
       {(provided, snapshot) => (
         <Container ref={provided.innerRef} {...provided.droppableProps}>
-          <h1>{props.box[0].maxWeight}</h1>
+          <li>
+            <h2>Owner: {props.owner}</h2>
+            <h3>Current Weight: {props.currentWeight}</h3>
+            <h3>Max Weight: {props.maxWeight}</h3>
+            <button>Click me!</button>
+          </li>
           {provided.placeholder}
         </Container>
       )}

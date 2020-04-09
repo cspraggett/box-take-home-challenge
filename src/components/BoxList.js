@@ -9,18 +9,21 @@ const Container = styled.div`
   padding: 8px;
   margin-bottom: 8px;
   display: flex;
-  flex-grow: 1;
+  flex-grow: 2;
 `;
 
 export default function BoxList({ box }) {
-  console.log(box);
+  console.log("this is by box:", box);
   const boxList = box.map((curr, index) => (
     <Box
-      name={box.name}
-      maxWeight={box.maxWeight}
-      currentWeight={box.currentWeight}
+      key={index}
+      index={index}
+      name={curr.name}
+      maxWeight={curr.maxWeight}
+      currentWeight={curr.currentWeight}
+      owner={curr.owner}
     />
   ));
 
-  return <ul>boxList</ul>;
+  return <ul>{boxList}</ul>;
 }

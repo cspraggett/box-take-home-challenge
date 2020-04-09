@@ -8,6 +8,7 @@ const Container = styled.div`
   padding: 8px;
   margin-bottom: 8px;
   background-color: lightgreen;
+  flex-grow: 1;
 `;
 
 export default function Items({ id, weight }) {

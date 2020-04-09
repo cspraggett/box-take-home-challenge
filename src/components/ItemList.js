@@ -10,7 +10,6 @@ const Container = styled.div`
   padding: 8px;
   margin-bottom: 8px;
   display: flex;
-  flex-grow: 1;
 `;
 
 export default function ItemList({ items }) {
@@ -20,7 +19,7 @@ export default function ItemList({ items }) {
   ));
   console.log("This is the itemList", itemList);
   return (
-    <Droppable droppableId={"1"}>
+    <Droppable droppableId={"1"} type="box" isDropDisabled={true}>
       {(provided, snapshot) => (
         <Container ref={provided.innerRef}>
           <ul>{itemList}</ul>

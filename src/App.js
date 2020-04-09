@@ -4,13 +4,15 @@ import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 
 import ItemList from "./components/ItemList";
-import Box from "./components/Box";
+import BoxList from "./components/BoxList";
 
 const Container = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  border: 1px solid black;
 `;
+
+const users = [1, 2, 3, 4, 5];
 
 const initialItems = [
   { id: 1, weight: 1 },
@@ -19,7 +21,10 @@ const initialItems = [
   { id: 4, weight: 8 },
 ];
 
-const initialBox = [{ name: "box1", maxWeight: 10, currentWeight: 0 }];
+const initialBox = [
+  { name: "box1", maxWeight: 10, currentWeight: 0, owner: 1 },
+  { name: "box2", maxWeight: 22, currentWeight: 0, owner: 2 },
+];
 
 function App() {
   const [box, setBox] = useState(initialBox);
@@ -30,9 +35,9 @@ function App() {
       return;
     }
 
-    if (result.destination.droppableId !== "box") {
-      return;
-    }
+    // if (result.destination.type) {
+    //   return;
+    // }
 
     console.log("it's good", box[0].currentWeight);
     console.log(
@@ -52,7 +57,7 @@ function App() {
     <DragDropContext onDragEnd={onDragEnd}>
       <Container>
         <ItemList items={initialItems} />
-        <Box box={initialBox} />
+        <BoxList box={initialBox} />
       </Container>
     </DragDropContext>
   );
