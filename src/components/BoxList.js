@@ -16,6 +16,7 @@ export default function BoxList({ box }) {
   console.log("this is by box:", box);
   const boxList = box.map((curr, index) => (
     <Box
+      index
       key={index}
       index={index}
       name={curr.name}

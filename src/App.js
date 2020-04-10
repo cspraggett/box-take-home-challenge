@@ -22,8 +22,8 @@ const initialItems = [
 ];
 
 const initialBox = [
-  { name: "box1", maxWeight: 10, currentWeight: 0, owner: 1 },
-  { name: "box2", maxWeight: 22, currentWeight: 0, owner: 2 },
+  { name: 1, maxWeight: 10, currentWeight: 0, owner: 1 },
+  { name: 2, maxWeight: 22, currentWeight: 0, owner: 2 },
 ];
 
 function App() {
@@ -34,23 +34,31 @@ function App() {
     if (!result.destination) {
       return;
     }
-
+    const dropId = result.destination["droppableId"];
+    console.log("dropId", dropId);
+    console.log("the box", box);
     // if (result.destination.type) {
     //   return;
     // }
 
-    console.log("it's good", box[0].currentWeight);
+    console.log("it's good", box[dropId - 1].currentWeight);
     console.log(
-      "the weigth",
-      box[0].currentWeight + items[result.source.index - 1].weight
+      "the weight",
+      box[dropId - 1].currentWeight + items[result.source.index - 1].weight
     );
     if (
-      box[0].currentWeight + items[result.source.index - 1].weight <=
-      box[0].maxWeight
+      box[dropId - 1].currentWeight + items[result.source.index - 1].weight <=
+      box[dropId - 1].maxWeight
     ) {
-      console.log("it fits!");
+      setBox([
+        ...box,
+        (box[parseInt(dropId - 1)].currentWeight +=
+          items[result.source.index - 1].weight),
+      ]);
+      console.log("it fits!", box);
     } else {
       console.log("too heavy");
+      return;
     }
   };
   return (
